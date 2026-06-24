@@ -10,6 +10,45 @@ source .venv/bin/activate
 
 <img width="600" alt="dataset_class_ratio" src="https://github.com/user-attachments/assets/a25cfd2f-9975-480a-839f-c8205269a0a7" />
 
+## Demo
+
+The demo script needs a YOLO whole-body detector ONNX/TFLite model and an SGC sunglasses classifier ONNX model.
+Place the detector model in the repository root, or pass its path with `--model`.
+Use the ONNX file exported by training for `--sgc_model`.
+
+```bash
+uv run python demo_sgc.py \
+--model yolomit_t_wholebody28_1x3x480x640.onnx \
+--sgc_model runs/sgc_is_l_48x48/sgc_is_l_48x48.onnx \
+--images_dir path/to/images \
+--execution_provider cpu \
+--disable_waitKey
+```
+
+For a video file:
+
+```bash
+uv run python demo_sgc.py \
+--model yolomit_t_wholebody28_1x3x480x640.onnx \
+--sgc_model sgc_is_l_48x48.onnx \
+--video path/to/video.mp4 \
+--execution_provider cpu
+```
+
+For a camera:
+
+```bash
+uv run python demo_sgc.py \
+--model yolomit_t_wholebody28_1x3x480x640.onnx \
+--sgc_model sgc_is_l_48x48.onnx \
+--video 0 \
+--execution_provider cpu
+```
+
+Processed still images are saved under `output/`.
+Video input is also recorded to `output.mp4` by default; add `--disable_video_writer` to skip recording.
+Use `--execution_provider cuda` or `--execution_provider tensorrt` when the required ONNXRuntime GPU/TensorRT environment is available.
+
 ## Train
 
 ```bash

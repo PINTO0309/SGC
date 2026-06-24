@@ -20,7 +20,7 @@ dependencies = [
 [project.optional-dependencies]
 onnx = [
     "onnx==1.19.0",
-    "onnxsim==0.4.30",
+    "onnxsim-prebuilt==0.4.39.post2",
 ]
 demo = [
     "onnxruntime-gpu==1.23.0",

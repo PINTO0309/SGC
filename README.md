@@ -183,6 +183,7 @@ uv run python -m sgc exportonnx \
 Use the `sgc_best_*.pt` checkpoint from the target run directory.
 
 ## Arch
+<img width="300" alt="sgc_is_p_48x48" src="https://github.com/user-attachments/assets/7c6b271d-725d-4a0c-97f7-e47ba1580ac5" />
 
 ## Citation
 

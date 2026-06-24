@@ -22,6 +22,12 @@ source .venv/bin/activate
 
 <img width="600" alt="dataset_class_ratio" src="https://github.com/user-attachments/assets/57aff5b6-d12a-433d-a489-d2edc349cffc" />
 
+## Data sample
+
+|1|2|3|4|5|6|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|<img width="48" height="48" alt="401341" src="https://github.com/user-attachments/assets/bf486e1d-ff73-4517-9d4f-5a31403ec96b" />|<img width="48" height="48" alt="401256" src="https://github.com/user-attachments/assets/2ca259f6-9e49-4b8f-8fd1-8260dbb8d129" />|<img width="48" height="48" alt="401134" src="https://github.com/user-attachments/assets/fd6f108a-fc34-49d3-8ecf-0992cafbdc94" />|<img width="48" height="48" alt="401123" src="https://github.com/user-attachments/assets/53982406-e628-4ce2-9667-e1ddb1c13c84" />|<img width="48" height="48" alt="401020" src="https://github.com/user-attachments/assets/5e412f56-3bfa-4414-884a-14cb08a6a150" />|<img width="48" height="48" alt="401011" src="https://github.com/user-attachments/assets/4dcb8879-43d0-46e0-b0c3-53fa178d50a3" />|
+
 ## Demo
 
 The demo script needs a YOLO whole-body detector ONNX/TFLite model and an SGC sunglasses classifier ONNX model.

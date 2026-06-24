@@ -1040,7 +1040,7 @@ def train_pipeline(config: TrainConfig, verbose: bool = False) -> Dict[str, Any]
         predictions = _evaluate_predictions(model, test_loader, device)
         pd.DataFrame(predictions).to_csv(config.output_dir / "test_predictions.csv", index=False)
 
-    onnx_path = Path(f"{config.output_dir}.onnx")
+    onnx_path = config.output_dir / f"{config.output_dir.name}.onnx"
     onnx_export_error = None
     try:
         export_to_onnx(best_checkpoint_path, onnx_path, device_spec="cpu")

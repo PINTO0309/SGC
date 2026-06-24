@@ -4,7 +4,7 @@ Classification of wearing vs. not wearing sunglasses.
 ## Install
 
 ```bash
-uv sync
+uv sync --all-extras
 source .venv/bin/activate
 ```
 

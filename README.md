@@ -23,7 +23,7 @@ uv run python -m sgc train \
 --batch_size 256 \
 --train_resampling balanced \
 --image_size ${SIZE} \
---base_channels 64 \
+--base_channels 32 \
 --num_blocks 1 \
 --arch_variant inverted_se \
 --head_variant avgmax_mlp \
@@ -41,7 +41,7 @@ uv run python -m sgc train \
 --batch_size 256 \
 --train_resampling balanced \
 --image_size ${SIZE} \
---base_channels 64 \
+--base_channels 32 \
 --num_blocks 2 \
 --arch_variant inverted_se \
 --head_variant avgmax_mlp \
@@ -59,7 +59,7 @@ uv run python -m sgc train \
 --batch_size 256 \
 --train_resampling balanced \
 --image_size ${SIZE} \
---base_channels 64 \
+--base_channels 32 \
 --num_blocks 3 \
 --arch_variant inverted_se \
 --head_variant avgmax_mlp \
@@ -77,7 +77,7 @@ uv run python -m sgc train \
 --batch_size 256 \
 --train_resampling balanced \
 --image_size ${SIZE} \
---base_channels 64 \
+--base_channels 32 \
 --num_blocks 4 \
 --arch_variant inverted_se \
 --head_variant avgmax_mlp \
@@ -95,7 +95,7 @@ uv run python -m sgc train \
 --batch_size 256 \
 --train_resampling balanced \
 --image_size ${SIZE} \
---base_channels 64 \
+--base_channels 32 \
 --num_blocks 8 \
 --arch_variant inverted_se \
 --head_variant avgmax_mlp \

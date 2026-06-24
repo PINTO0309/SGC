@@ -181,3 +181,5 @@ uv run python -m sgc exportonnx \
 ```
 
 Use the `sgc_best_*.pt` checkpoint from the target run directory.
+
+## Arch

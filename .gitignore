@@ -225,4 +225,4 @@ val/
 *.onnx
 *.tflite
 *.parquet
-demo_mwc.py
+*.mp4

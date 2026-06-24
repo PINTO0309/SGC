@@ -19,7 +19,7 @@ Use the ONNX file exported by training for `--sgc_model`.
 ```bash
 uv run python demo_sgc.py \
 --model yolomit_t_wholebody28_1x3x480x640.onnx \
---sgc_model runs/sgc_is_l_48x48/sgc_is_l_48x48.onnx \
+--sgc_model sgc_is_l_48x48.onnx \
 --images_dir path/to/images \
 --execution_provider cpu \
 --disable_waitKey

@@ -1040,8 +1040,18 @@ def train_pipeline(config: TrainConfig, verbose: bool = False) -> Dict[str, Any]
         predictions = _evaluate_predictions(model, test_loader, device)
         pd.DataFrame(predictions).to_csv(config.output_dir / "test_predictions.csv", index=False)
 
+    onnx_path = Path(f"{config.output_dir}.onnx")
+    onnx_export_error = None
+    try:
+        export_to_onnx(best_checkpoint_path, onnx_path, device_spec="cpu")
+    except Exception as exc:
+        onnx_export_error = str(exc)
+        LOGGER.warning("Automatic ONNX export failed: %s", exc, exc_info=True)
+
     summary = {
         "checkpoint": str(best_checkpoint_path),
+        "onnx_path": str(onnx_path) if onnx_export_error is None else None,
+        "onnx_export_error": onnx_export_error,
         "best_epoch": best_state["epoch"],
         "best_accuracy": best_state["best_accuracy"],
         "best_f1": best_state["best_f1"],

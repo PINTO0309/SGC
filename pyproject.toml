@@ -1,0 +1,37 @@
+[project]
+name = "sgc"
+version = "1.0.0"
+description = "Sunglasses wearing classifier."
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "matplotlib==3.10.7",
+    "numpy==1.26.4",
+    "opencv-python==4.11.0.86",
+    "pandas==2.3.3",
+    "pillow==10.4.0",
+    "pyarrow==22.0.0",
+    "tensorboard==2.17.1",
+    "torch==2.5.1",
+    "torchvision==0.20.1",
+    "tqdm==4.67.1",
+]
+
+[project.optional-dependencies]
+onnx = [
+    "onnx==1.19.0",
+    "onnxsim==0.4.30",
+]
+demo = [
+    "onnxruntime-gpu==1.23.0",
+]
+
+[project.scripts]
+sgc = "sgc.pipeline:main"
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["sgc*"]

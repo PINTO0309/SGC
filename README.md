@@ -1,4 +1,6 @@
 # SGC
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1278143582.svg)](https://doi.org/10.5281/zenodo.20824676) ![GitHub License](https://img.shields.io/github/license/pinto0309/SGC) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/PINTO0309/sgc)
+
 Classification of wearing vs. not wearing sunglasses. 48x48
 
 https://github.com/user-attachments/assets/52b8bce7-3bdb-4ee9-a410-4e0e1322116b
@@ -196,7 +198,7 @@ If you find this project useful, please consider citing:
   month     = {06},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.19617672},
+  doi       = {10.5281/zenodo.20824676},
   url       = {https://github.com/PINTO0309/sgc},
   abstract  = {Classification of wearing vs. not wearing sunglasses. 48x48.},
 }

@@ -1,6 +1,8 @@
 # SGC
 Classification of wearing vs. not wearing sunglasses.
 
+https://github.com/user-attachments/assets/52b8bce7-3bdb-4ee9-a410-4e0e1322116b
+
 ## Install
 
 ```bash

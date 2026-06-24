@@ -8,7 +8,7 @@ uv sync --all-extras
 source .venv/bin/activate
 ```
 
-<img width="600" alt="dataset_class_ratio" src="https://github.com/user-attachments/assets/a25cfd2f-9975-480a-839f-c8205269a0a7" />
+<img width="600" alt="dataset_class_ratio" src="https://github.com/user-attachments/assets/57aff5b6-d12a-433d-a489-d2edc349cffc" />
 
 ## Demo
 

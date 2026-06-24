@@ -3,6 +3,14 @@ Classification of wearing vs. not wearing sunglasses.
 
 https://github.com/user-attachments/assets/52b8bce7-3bdb-4ee9-a410-4e0e1322116b
 
+|Variant|Size|F1|CPU<br>inference<br>latency|ONNX|
+|:-:|:-:|:-:|:-:|:-:|
+|P|115 KB|0.|0.23 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_p_48x48.onnx)|
+|N|176 KB|0.|0.41 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_n_48x48.onnx)|
+|T|280 KB|0.|0.52 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_t_48x48.onnx)|
+|S|495 KB|0.9423|0.64 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_s_48x48.onnx)|
+|L|6.4 MB|0.9554|1.03 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_l_48x48.onnx)|
+
 ## Install
 
 ```bash
@@ -11,14 +19,6 @@ source .venv/bin/activate
 ```
 
 <img width="600" alt="dataset_class_ratio" src="https://github.com/user-attachments/assets/57aff5b6-d12a-433d-a489-d2edc349cffc" />
-
-|Variant|Size|F1|CPU<br>inference<br>latency|ONNX|
-|:-:|:-:|:-:|:-:|:-:|
-|P|115 KB|0.|0.23 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_p_48x48.onnx)|
-|N|176 KB|0.|0.41 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_n_48x48.onnx)|
-|T|280 KB|0.|0.52 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_t_48x48.onnx)|
-|S|495 KB|0.9423|0.64 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_s_48x48.onnx)|
-|L|6.4 MB|0.9554|1.03 ms|[Download](https://github.com/PINTO0309/SGC/releases/download/onnx/sgc_l_48x48.onnx)|
 
 ## Demo
 

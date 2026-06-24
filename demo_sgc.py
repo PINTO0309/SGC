@@ -972,7 +972,7 @@ class SGC(AbstractModel):
         self._input_height, self._input_width = self._resolve_input_size()
 
     def _resolve_input_size(self) -> Tuple[int, int]:
-        default_height, default_width = 32, 32
+        default_height, default_width = 48, 48
         input_shape: Optional[List[int]] = None
         if self._runtime == 'onnx':
             input_shape = list(self._interpreter.get_inputs()[0].shape)
@@ -1518,7 +1518,6 @@ def main():
         model_path=sgc_model_file,
         providers=providers,
     )
-    use_head_crops = Path(sgc_model_file).name == 'sgc_l_48x48.onnx'
 
     file_paths: List[str] = None
     cap = None
@@ -1576,10 +1575,8 @@ def main():
             disable_headpose_identification_mode=disable_headpose_identification_mode,
         )
         elapsed_time = time.perf_counter() - start_time
-        body_boxes = [box for box in boxes if box.classid == 0]
         head_boxes = [box for box in boxes if box.classid == 7]
-        target_boxes = head_boxes if use_head_crops else body_boxes
-        for box in target_boxes:
+        for box in head_boxes:
             crop = crop_image_with_margin(
                 image=image,
                 box=box,
@@ -1790,6 +1787,7 @@ def main():
                 cv2.rectangle(debug_image, (box.x1, box.y1), (box.x2, box.y2), color, colored_line_width)
 
             # TrackID text
+            sunglasses_score_drawn_with_trackid = False
             if enable_trackid_overlay and classid == 7 and box.track_id > 0:
                 track_text = f'ID: {box.track_id}'
                 text_x = max(box.x1 - 5, 0)
@@ -1821,6 +1819,46 @@ def main():
                     1,
                     cv2.LINE_AA,
                 )
+                if box.head_prob_sunglasses is not None and box.head_prob_sunglasses >= 0.0:
+                    score_text = f'Sunglasses: {box.head_prob_sunglasses:.3f}'
+                    score_color = SUNGLASSES_COLOR if box.head_state == 1 else color
+                    track_text_size, _ = cv2.getTextSize(
+                        track_text,
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6,
+                        1,
+                    )
+                    score_text_size, _ = cv2.getTextSize(
+                        score_text,
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6,
+                        1,
+                    )
+                    score_x = min(
+                        text_x + track_text_size[0] + 12,
+                        max(debug_image_w - score_text_size[0] - 2, 0),
+                    )
+                    cv2.putText(
+                        debug_image,
+                        score_text,
+                        (score_x, text_y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6,
+                        (10, 10, 10),
+                        2,
+                        cv2.LINE_AA,
+                    )
+                    cv2.putText(
+                        debug_image,
+                        score_text,
+                        (score_x, text_y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6,
+                        score_color,
+                        1,
+                        cv2.LINE_AA,
+                    )
+                    sunglasses_score_drawn_with_trackid = True
 
             # Attributes text
             generation_txt = ''
@@ -1845,7 +1883,9 @@ def main():
             attr_txt = f'{attr_txt} {headpose_txt}' if headpose_txt != '' else f'{attr_txt}'
             sunglasses_label_active = classid in (0, 7) and bool(box.head_label)
             if classid in (0, 7):
-                if box.head_label or (box.head_prob_sunglasses is not None and box.head_prob_sunglasses >= 0.0):
+                if classid == 7 and sunglasses_score_drawn_with_trackid:
+                    attr_txt = ''
+                elif box.head_label or (box.head_prob_sunglasses is not None and box.head_prob_sunglasses >= 0.0):
                     attr_txt = f'{box.head_label} {box.head_prob_sunglasses:.3f}' if box.head_label else f'{box.head_prob_sunglasses:.3f}'
                 else:
                     attr_txt = ''

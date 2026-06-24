@@ -222,6 +222,7 @@ sunglasses/
 runs/
 train/
 val/
+output*/
 *.onnx
 *.tflite
 *.parquet

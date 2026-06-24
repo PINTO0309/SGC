@@ -1,5 +1,5 @@
 # SGC
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1278143582.svg)](https://doi.org/10.5281/zenodo.20824676) ![GitHub License](https://img.shields.io/github/license/pinto0309/SGC) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/PINTO0309/sgc)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20824676.svg)](https://doi.org/10.5281/zenodo.20824676) ![GitHub License](https://img.shields.io/github/license/pinto0309/SGC) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/PINTO0309/sgc)
 
 Classification of wearing vs. not wearing sunglasses. 48x48
 

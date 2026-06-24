@@ -219,7 +219,7 @@ __marimo__/
 
 no_sunglasses/
 sunglasses/
-runs/
+runs*/
 train/
 val/
 output*/

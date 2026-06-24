@@ -156,3 +156,18 @@ uv run python -m sgc train \
 --device auto \
 --use_amp
 ```
+
+## Export ONNX
+
+Training exports the best checkpoint to ONNX automatically.
+To export a checkpoint manually, run:
+
+```bash
+uv run python -m sgc exportonnx \
+--checkpoint runs/sgc_is_l_48x48/sgc_best_epoch0067_f1_0.9430.pt \
+--output sgc_is_l_48x48.onnx \
+--opset 17 \
+--device cpu
+```
+
+Use the `sgc_best_*.pt` checkpoint from the target run directory.

@@ -183,3 +183,20 @@ uv run python -m sgc exportonnx \
 Use the `sgc_best_*.pt` checkpoint from the target run directory.
 
 ## Arch
+
+## Citation
+
+If you find this project useful, please consider citing:
+
+```bibtex
+@software{hyodo2026sgc,
+  author    = {Katsuya Hyodo},
+  title     = {PINTO0309/SGC},
+  month     = {06},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19617672},
+  url       = {https://github.com/PINTO0309/sgc},
+  abstract  = {Classification of wearing vs. not wearing sunglasses. 48x48.},
+}
+```

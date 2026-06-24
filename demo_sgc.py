@@ -83,7 +83,9 @@ YOLOMIT28_TO_LEGACY_CLASS_ID = {
 YOLO_NMS_IOU_THRESHOLD = 0.45
 
 SUNGLASSES_LABEL = 'Sunglasses'
+NO_SUNGLASSES_LABEL = 'No-Sunglasses'
 SUNGLASSES_COLOR = (0, 210, 0)  # readable green for sunglasses label/bounding boxes
+SUNGLASSES_SCORE_THRESHOLD = 0.50
 
 class Color(Enum):
     BLACK          = '\033[30m'
@@ -1593,8 +1595,8 @@ def main():
             except Exception:
                 continue
             box.head_prob_sunglasses = prob_sunglasses
-            box.head_state = 1 if prob_sunglasses >= 0.50 else 0
-            box.head_label = SUNGLASSES_LABEL if box.head_state == 1 else ''
+            box.head_state = 1 if prob_sunglasses >= SUNGLASSES_SCORE_THRESHOLD else 0
+            box.head_label = SUNGLASSES_LABEL if box.head_state == 1 else NO_SUNGLASSES_LABEL
 
         if file_paths is None:
             cv2.putText(debug_image, f'{elapsed_time*1000:.2f} ms', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2, cv2.LINE_AA)
@@ -1654,7 +1656,7 @@ def main():
                     color = BOX_COLORS[box.head_pose][0] if box.head_pose != -1 else (216,67,21)
                 else:
                     color = (0,0,255)
-                if box.head_label:
+                if box.head_state == 1:
                     color = SUNGLASSES_COLOR
             elif classid == 16:
                 # Face
@@ -1820,7 +1822,8 @@ def main():
                     cv2.LINE_AA,
                 )
                 if box.head_prob_sunglasses is not None and box.head_prob_sunglasses >= 0.0:
-                    score_text = f'Sunglasses: {box.head_prob_sunglasses:.3f}'
+                    score_label = box.head_label or SUNGLASSES_LABEL
+                    score_text = f'{score_label}: {box.head_prob_sunglasses:.3f}'
                     score_color = SUNGLASSES_COLOR if box.head_state == 1 else color
                     track_text_size, _ = cv2.getTextSize(
                         track_text,
@@ -1881,7 +1884,7 @@ def main():
 
             headpose_txt = BOX_COLORS[box.head_pose][1] if box.head_pose != -1 else ''
             attr_txt = f'{attr_txt} {headpose_txt}' if headpose_txt != '' else f'{attr_txt}'
-            sunglasses_label_active = classid in (0, 7) and bool(box.head_label)
+            sunglasses_label_active = classid in (0, 7) and box.head_state == 1
             if classid in (0, 7):
                 if classid == 7 and sunglasses_score_drawn_with_trackid:
                     attr_txt = ''

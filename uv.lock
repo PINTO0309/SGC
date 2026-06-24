@@ -23,6 +23,15 @@ wheels = [
 ]
 
 [[package]]
+name = "bbalg"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a8/e4/a15dd0b717085121cf9cb1aa0d5011e9cf1d2db66fea4c059f2c9cd05644/bbalg-1.0.2.tar.gz", hash = "sha256:7b80b5a59ea144a5729c52d2beccd1faf8e083545f717b2e6ba8c8000d06bb92", size = 4518, upload-time = "2024-01-15T16:31:45.289Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/13/da/12b7627faedeb8fb91eead6b04277e8fadb58d27043f38e3de20f235b3aa/bbalg-1.0.2-py3-none-any.whl", hash = "sha256:08d7f8125ce1a1f1e81b14e8f6f3280ca9c15800fa639e53bb26d89b4157d42a", size = 5304, upload-time = "2024-01-15T16:31:44.036Z" },
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 source = { registry = "https://pypi.org/simple" }
@@ -967,6 +976,7 @@ name = "sgc"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [
+    { name = "bbalg" },
     { name = "matplotlib" },
     { name = "numpy" },
     { name = "opencv-python" },
@@ -990,6 +1000,7 @@ onnx = [
 
 [package.metadata]
 requires-dist = [
+    { name = "bbalg", specifier = "==1.0.2" },
     { name = "matplotlib", specifier = "==3.10.7" },
     { name = "numpy", specifier = "==1.26.4" },
     { name = "onnx", marker = "extra == 'onnx'", specifier = "==1.19.0" },

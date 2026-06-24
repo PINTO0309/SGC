@@ -42,7 +42,22 @@ uv run python demo_sgc.py \
 --model yolomit_t_wholebody28_1x3x480x640.onnx \
 --sgc_model sgc_is_l_48x48.onnx \
 --video 0 \
---execution_provider cpu
+--execution_provider cpu \
+--disable_generation_identification_mode \
+--disable_gender_identification_mode \
+--disable_left_and_right_hand_identification_mode \
+--disable_headpose_identification_mode
+```
+```bash
+uv run python demo_sgc.py \
+--model yolomit_t_wholebody28_1x3x480x640.onnx \
+--sgc_model sgc_is_l_48x48.onnx \
+--video 0 \
+--execution_provider cuda \
+--disable_generation_identification_mode \
+--disable_gender_identification_mode \
+--disable_left_and_right_hand_identification_mode \
+--disable_headpose_identification_mode
 ```
 
 Processed still images are saved under `output/`.

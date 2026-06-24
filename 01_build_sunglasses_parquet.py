@@ -7,7 +7,7 @@ import io
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List
+from typing import Iterable, List, Optional
 
 import pandas as pd
 from PIL import Image
@@ -113,14 +113,12 @@ def infer_split(rel_path: str) -> str:
     return "train"
 
 
-def infer_label(rel_path: str) -> tuple[int, str]:
+def infer_label(rel_path: str) -> Optional[tuple[int, str]]:
     for part in Path(rel_path).parts:
         label = part.lower()
         if label in CLASS_MAP:
             return CLASS_MAP[label], label
-    raise ValueError(
-        f"Could not infer label from {rel_path!r}; expected a no_sunglasses or sunglasses path component."
-    )
+    return None
 
 
 def encode_resized_image(path: Path, image_size: tuple[int, int]) -> bytes:
@@ -147,6 +145,7 @@ def build_dataframe(root: Path, extensions: Iterable[str], image_size: tuple[int
 
     rows: List[SampleRow] = []
     person_counter = 1
+    skipped_unlabeled = 0
 
     for path, rel_path in tqdm(
         image_entries,
@@ -155,7 +154,11 @@ def build_dataframe(root: Path, extensions: Iterable[str], image_size: tuple[int
         dynamic_ncols=True,
     ):
         split = infer_split(rel_path)
-        class_id, label = infer_label(rel_path)
+        label_result = infer_label(rel_path)
+        if label_result is None:
+            skipped_unlabeled += 1
+            continue
+        class_id, label = label_result
         rel_parent = Path(rel_path).parent
         parent = rel_parent.as_posix()
         source = root.name
@@ -179,7 +182,13 @@ def build_dataframe(root: Path, extensions: Iterable[str], image_size: tuple[int
         person_counter += 1
 
     df = pd.DataFrame(rows)
+    if df.empty:
+        raise RuntimeError(
+            f"No labelled images found under {root}; expected images below no_sunglasses/ or sunglasses/ directories."
+        )
     df = df.sort_values(["split", "class_id", "image_path"]).reset_index(drop=True)
+    if skipped_unlabeled:
+        print(f"Skipped {skipped_unlabeled} image(s) without no_sunglasses/sunglasses path component.")
     return df
 
 

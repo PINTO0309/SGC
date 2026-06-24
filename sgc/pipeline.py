@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 import cv2
+import matplotlib
 import numpy as np
 import pandas as pd
 import torch
@@ -25,6 +26,8 @@ from torchvision import transforms
 from torchvision.transforms import v2 as transforms_v2
 from PIL import Image
 from tqdm.auto import tqdm
+
+matplotlib.use("Agg", force=True)
 from matplotlib import pyplot as plt
 
 from .data import (
